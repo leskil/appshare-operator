@@ -1,0 +1,7 @@
+domain: appshare.co
+layout: go.kubebuilder.io/v2
+projectName: appshare-operator
+repo: github.com/leskil/appshare-operator
+version: 3-alpha
+plugins:
+  go.sdk.operatorframework.io/v2-alpha: {}
