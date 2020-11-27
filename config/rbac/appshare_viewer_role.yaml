@@ -1,0 +1,20 @@
+# permissions for end users to view appshares.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: appshare-viewer-role
+rules:
+- apiGroups:
+  - appshare.appshare.co
+  resources:
+  - appshares
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - appshare.appshare.co
+  resources:
+  - appshares/status
+  verbs:
+  - get

@@ -1,0 +1,7 @@
+apiVersion: appshare.appshare.co/v1
+kind: AppShare
+metadata:
+  name: appshare-sample
+spec:
+  # Add fields here
+  replicas: 1

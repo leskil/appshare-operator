@@ -1,0 +1,24 @@
+# permissions for end users to edit appshares.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: appshare-editor-role
+rules:
+- apiGroups:
+  - appshare.appshare.co
+  resources:
+  - appshares
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - appshare.appshare.co
+  resources:
+  - appshares/status
+  verbs:
+  - get
