@@ -17,6 +17,7 @@ limitations under the License.
 package v1
 
 import (
+	corev1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
@@ -30,6 +31,9 @@ type AppShareSpec struct {
 
 	// The number of replicas for the application
 	Replicas int32 `json:"replicas"`
+
+	// The resource limits and requirements
+	Resources corev1.ResourceRequirements `json:"resources"`
 }
 
 // AppShareStatus defines the observed state of AppShare

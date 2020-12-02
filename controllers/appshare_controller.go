@@ -26,13 +26,14 @@ import (
 
 	"github.com/go-logr/logr"
 	"k8s.io/apimachinery/pkg/api/errors"
-	"k8s.io/apimachinery/pkg/api/resource"
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/apimachinery/pkg/types"
 	ctrl "sigs.k8s.io/controller-runtime"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 
 	appsharev1 "github.com/leskil/appshare-operator/api/v1"
+
+	"github.com/google/go-cmp/cmp"
 )
 
 // AppShareReconciler reconciles a AppShare object
@@ -126,6 +127,11 @@ func applyCrdChangesToDeployment(dep *appsv1.Deployment, crd *appsharev1.AppShar
 		hasChanges = true
 	}
 
+	if !cmp.Equal(dep.Spec.Template.Spec.Containers[0].Resources, crd.Spec.Resources) {
+		dep.Spec.Template.Spec.Containers[0].Resources = crd.Spec.Resources
+		hasChanges = true
+	}
+
 	return hasChanges
 }
 
@@ -179,16 +185,7 @@ func (r *AppShareReconciler) createDeployment(crd *appsharev1.AppShare) *appsv1.
 								},
 							},
 						},
-						Resources: corev1.ResourceRequirements{
-							Limits: corev1.ResourceList{
-								corev1.ResourceCPU: resource.MustParse("4000m"),
-								"memory":           resource.MustParse("4096Mi"),
-							},
-							Requests: corev1.ResourceList{
-								corev1.ResourceCPU: resource.MustParse("500m"),
-								"memory":           resource.MustParse("512Mi"),
-							},
-						},
+						Resources: crd.Spec.Resources,
 					},
 					}},
 			},

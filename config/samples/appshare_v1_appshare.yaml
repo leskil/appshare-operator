@@ -5,3 +5,10 @@ metadata:
 spec:
   # Add fields here
   replicas: 1
+  resources: 
+    limits: 
+      cpu: 4000m
+      memory: 4096Mi
+    requests:
+      cpu: 500m
+      memory: 512Mi
