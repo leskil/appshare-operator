@@ -5,4 +5,4 @@ kind: Kustomization
 images:
 - name: controller
   newName: leskil/appshare-operator
-  newTag: "1.5"
+  newTag: "1.0"
