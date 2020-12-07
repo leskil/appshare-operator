@@ -1,4 +1,9 @@
-# An operator for AppShare
+# About AppShare Operator
+This operator is very much work in progress. The operator will install AppShare (https://github.com/zubairq/appshare) on OpenShift, and possibly Kubernetes as well, but that is still to be tested.
+
+## Prerequisites
+- Golang v. 1.13 or greater
+- Operator SDK (https://sdk.operatorframework.io/)
 
 ## How to test
 1. Make sure you are logged in to a cluster
